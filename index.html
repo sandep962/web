@@ -313,110 +313,110 @@
     color: #00ffa2;
   }
 
-  /* Mobile Responsiveness */
-  @media (max-width: 1024px) {
-    .hero {
-      padding: 6rem 1rem;
-    }
-    
-    .register-section {
-      padding: 2rem;
-    }
-  }
+  /* ===== MOBILE FIXES ===== */
+/* Add this to your existing CSS */
 
-  @media (max-width: 768px) {
-    nav {
-      padding: 1rem;
-      flex-wrap: wrap;
+    @media (max-width: 767px) {
+      /* Hero Section Fixes */
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 20px 80px;
+      }
+      
+      .hero .container {
+        padding-top: 60px;
+      }
+      
+      .glitch {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+      
+      .hero h2 {
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+      }
+      
+      .hero p {
+        font-size: 0.9rem;
+        margin: 1rem auto;
+        max-width: 90%;
+      }
+      
+      .cta-btn {
+        position: relative;
+        bottom: auto;
+        margin: 2rem auto 0;
+        transform: none;
+        left: auto;
+      }
+      
+      /* About Section Fixes */
+      .about-section header {
+        padding: 40px 15px 15px;
+      }
+      
+      .about-section header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .about-section header p {
+        font-size: 1rem;
+      }
+      
+      .about-section section {
+        padding: 15px;
+        margin: 30px auto;
+      }
+      
+      .about-section section h2 {
+        font-size: 1.5rem;
+      }
+      
+      .about-section section p {
+        font-size: 1rem;
+      }
+      
+      /* Text Overflow Protection */
+      h1, h2, h3, p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      
+      /* Force line breaks in specific elements */
+      .hero h2 br,
+      .hero p br {
+        display: none;
+      }
     }
-    
-    nav a {
-      margin: 0 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    .hero {
-      height: auto;
-      padding: 8rem 1rem 4rem;
-    }
-    
-    .glitch {
-      font-size: 2.5rem;
-    }
-    
-    .hero h2 {
-      font-size: 1.3rem;
-    }
-    
-    .cta-btn {
-      position: relative;
-      bottom: auto;
-      margin: 2rem auto;
-    }
-    
-    .about-section header h1 {
-      font-size: 2.5rem;
-    }
-    
-    .team {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .register-section {
-      padding: 1rem;
-      margin-top: 3rem;
-    }
-    
-    .form-container {
-      padding: 1.5rem;
-    }
-  }
 
-  @media (max-width: 480px) {
-    nav {
-      flex-direction: column;
-      align-items: center;
-      padding: 0.5rem;
+    /* Special Fixes for Very Small Screens */
+    @media (max-width: 400px) {
+      .glitch {
+        font-size: 1.8rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.1rem;
+      }
+      
+      .cta-btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+      }
+      
+      .about-section header h1 {
+        font-size: 1.6rem;
+      }
     }
-    
-    nav a {
-      margin: 0.3rem 0;
-      padding: 0.3rem;
+
+    /* Prevent horizontal scrolling */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
     }
-    
-    .glitch {
-      font-size: 2rem;
-    }
-    
-    .hero h2 {
-      font-size: 1.1rem;
-    }
-    
-    .about-section header h1 {
-      font-size: 2rem;
-    }
-    
-    .about-section section h2 {
-      font-size: 1.5rem;
-    }
-    
-    .team {
-      grid-template-columns: 1fr;
-    }
-    
-    .member {
-      padding: 15px;
-    }
-    
-    .cta-btn {
-      padding: 1rem 2rem;
-      font-size: 1rem;
-    }
-    
-    .form-container h2 {
-      font-size: 1.5rem;
-    }
-  }
 
   </style>
   
