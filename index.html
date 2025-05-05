@@ -32,6 +32,13 @@
     font-family: 'Poppins', sans-serif;
     background: var(--light);
     color: #333;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   nav {
@@ -51,6 +58,11 @@
     margin: 0 1rem;
     font-weight: 600;
     position: relative;
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   nav a:hover {
@@ -106,10 +118,10 @@
 
   .cta-btn {
     position: absolute;
-    bottom: -70px; /* Adjust this value to raise/lower button */
+    bottom: -70px;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 0; /* Remove margin since it's absolutely positioned now */
+    margin-top: 0;
     padding: 0.75rem 3rem;
     font-size: 1rem;
     font-weight: bold;
@@ -121,6 +133,8 @@
     transition: 0.3s ease;
     box-shadow: 0 0 10px #00ffe7, 0 0 40px #00ffe7;
     text-decoration: none;
+    min-width: 48px;
+    min-height: 48px;
   }
 
   .cta-btn:hover {
@@ -128,7 +142,6 @@
     box-shadow: 0 0 20px #00ffe7, 0 0 60px #00ffe7;
   }
 
-  /* About Section Styles */
   .about-section {
     font-family: 'Rajdhani', sans-serif;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
@@ -214,55 +227,6 @@
     color: #888;
   }
 
-  @media (max-width: 600px) {
-    .about-section header h1 {
-      font-size: 2rem;
-    }
-
-    .about-section section h2 {
-      font-size: 1.5rem;
-    }
-
-    .cta-btn {
-      bottom: -30px; /* Adjust for better positioning on mobile */
-      padding: 0.6rem 2rem;
-      font-size: 0.9rem;
-    }
-
-    .hero h2 {
-      font-size: 1.2rem;
-    }
-
-    .hero p {
-      font-size: 0.9rem;
-    }
-
-    .form-container {
-      padding: 1.5rem;
-      max-width: 90%;
-    }
-
-    .form-container h2 {
-      font-size: 1.5rem;
-    }
-
-    .form-container label {
-      font-size: 1rem;
-    }
-
-    .form-container input,
-    .form-container textarea,
-    .form-container select {
-      font-size: 1rem;
-    }
-
-    .form-container button {
-      padding: 0.75rem;
-      font-size: 1rem;
-    }
-  }
-
-  /* Registration Form Styles */
   .register-section {
     margin: 0;
     margin-top: 5rem;
@@ -347,6 +311,111 @@
     margin-top: 2rem;
     border-radius: 8px;
     color: #00ffa2;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 1024px) {
+    .hero {
+      padding: 6rem 1rem;
+    }
+    
+    .register-section {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    nav a {
+      margin: 0 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .hero {
+      height: auto;
+      padding: 8rem 1rem 4rem;
+    }
+    
+    .glitch {
+      font-size: 2.5rem;
+    }
+    
+    .hero h2 {
+      font-size: 1.3rem;
+    }
+    
+    .cta-btn {
+      position: relative;
+      bottom: auto;
+      margin: 2rem auto;
+    }
+    
+    .about-section header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .team {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .register-section {
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+    
+    .form-container {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    nav {
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem;
+    }
+    
+    nav a {
+      margin: 0.3rem 0;
+      padding: 0.3rem;
+    }
+    
+    .glitch {
+      font-size: 2rem;
+    }
+    
+    .hero h2 {
+      font-size: 1.1rem;
+    }
+    
+    .about-section header h1 {
+      font-size: 2rem;
+    }
+    
+    .about-section section h2 {
+      font-size: 1.5rem;
+    }
+    
+    .team {
+      grid-template-columns: 1fr;
+    }
+    
+    .member {
+      padding: 15px;
+    }
+    
+    .cta-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+    
+    .form-container h2 {
+      font-size: 1.5rem;
+    }
   }
 
   </style>
@@ -678,7 +747,7 @@
         
 
         <div class="status-message" id="statusMessage">
-          ✅ Your registration is under review. After payment confirmation, you can join or create your team!
+          ✅ Your registration is under review. After 1ts round, you can join or create your team!
         </div>
       </form>
     </div>
