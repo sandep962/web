@@ -820,18 +820,28 @@
     }
   </script>
 
-<script>
-  // Handle form submission
-  document.getElementById('registration-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // prevent actual form submission
-    document.getElementById('statusMessage').style.display = 'block';
-    this.reset(); // reset the form
-  });
+    <script>
+    // Handle form submission
+    document.getElementById('registration-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // prevent actual form submission
+        document.getElementById('statusMessage').style.display = 'block';
+        this.reset(); // reset the form
+    });
 
-  // Hide message on reload
-  window.onload = function () {
-    document.getElementById('statusMessage').style.display = 'none';
-  };
-</script>
+    // Hide message on reload
+    window.onload = function () {
+        document.getElementById('statusMessage').style.display = 'none';
+    };
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QZ6MMLWEV"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8QZ6MMLWEV');
+    </script>
+
 </body>
 </html>
