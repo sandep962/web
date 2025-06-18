@@ -19,6 +19,7 @@
     --accent: #FFA400;
     --dark: #121212;
     --light: #121212;
+    --header-height: 0px; /* CSS variable for dynamic header height */
   }
 
   * {
@@ -34,6 +35,7 @@
     color: #333;
     overflow-x: hidden;
     width: 100%;
+    /* No padding-top here, hero section will manage its margin-top */
   }
 
   html {
@@ -44,12 +46,15 @@
   nav {
     background: var(--primary);
     padding: 1rem 2rem;
-    position: fixed;
+    position: fixed; /* Keep fixed */
     width: 100%;
-    top: 0;
+    left: 0; /* Align to left */
     z-index: 1000;
     display: flex;
     justify-content: center;
+    transition: top 0.3s ease; /* Smooth transition for top property */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow for nav */
+    top: 0; /* Default, will be adjusted by JS */
   }
 
   nav a {
@@ -71,7 +76,7 @@
 
   .hero {
     position: relative;
-    height: 100vh;
+    /* height: 100vh; <-- REMOVED THIS LINE */
     background: linear-gradient(135deg, #0f0f0f, #1a1a2e);
     color: #00ffe7;
     display: flex;
@@ -80,6 +85,10 @@
     flex-direction: column;
     text-align: center;
     overflow: hidden;
+    
+    /* Dynamically adjust margin-top and min-height based on header */
+    margin-top: var(--header-height); 
+    min-height: calc(100vh - var(--header-height)); 
   }
 
   #particles-js {
@@ -94,7 +103,7 @@
   .hero .container {
     position: relative;
     z-index: 2;
-    padding-top: 80px;
+    padding-top: 80px; /* Keep this for internal spacing, if desired */
   }
 
   .glitch {
@@ -227,100 +236,108 @@
     color: #888;
   }
 
-  .register-section {
-    margin: 0;
-    margin-top: 5rem;
-    font-family: 'Poppins', sans-serif;
-    background: #0f0f0f;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2rem 5rem;
-  }
-
-  .form-container {
-    background: #1a1a1a;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 700px;
-    box-shadow: 0 0 25px rgba(0, 255, 170, 0.3);
-  }
-
-  .form-container h2 {
+  /* Announcement Bar Styling */
+  .announcement-bar {
+    background: linear-gradient(90deg, #1a1a2e, #2A2A72, #1a1a2e); /* Gradient background for techy feel */
+    color: #c3f8ff; /* Light blue/cyan for text */
+    padding: 20px 25px; /* More padding */
     text-align: center;
-    color: #00ffa2;
-    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    z-index: 1001; /* Ensure it's on top */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); /* More prominent shadow */
+    line-height: 1.6; /* Better readability */
+    position: fixed; /* Fixed position */
+    top: 0; /* Pin to the very top */
+    left: 0; /* Pin to the left */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in width */
+    transition: transform 0.3s ease; /* Smooth transition for hiding/showing */
+    transform: translateY(0); /* Default visible */
   }
 
-  .form-container form {
+  .announcement-bar.hidden {
+    transform: translateY(-100%); /* Move off-screen when hidden */
+  }
+
+  .announcement-bar h3 {
+    margin-top: 0;
+    margin-bottom: 15px; /* More space below heading */
+    font-size: 1.8rem; /* Larger heading */
+    color: #00ffe7; /* Brighter blue for heading */
+    font-family: 'JetBrains Mono', monospace; /* Techy font for heading */
+    text-shadow: 0 0 10px rgba(0,255,231,0.5); /* Subtle glow */
+  }
+
+  .announcement-bar p {
+    margin-bottom: 10px; /* Space between paragraphs */
+    color: #e0f2f1; /* Consistent light text */
+    max-width: 900px; /* Constrain width for readability */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .announcement-bar .message-section {
+    margin-bottom: 15px; /* Space between the main message blocks */
+    padding: 10px 0; /* Add a bit of padding within sections */
+  }
+
+  .announcement-bar .selected-message,
+  .announcement-bar .unselected-message {
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 10px auto;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    text-align: left; /* Align text within these blocks to the left */
+    font-size: 0.95rem;
   }
 
-  .form-container label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: #00ffa2;
+  .announcement-bar .selected-message {
+    background-color: rgba(0, 255, 170, 0.1); /* Light transparent green */
+    border: 1px solid #00ffa2; /* Green border */
+    color: #00ffa2; /* Green text */
   }
 
-  .form-container input,
-  .form-container textarea,
-  .form-container select {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1.2rem;
-    background: #111;
-    border: 1px solid #00ffa2;
-    border-radius: 8px;
-    color: #fff;
+  .announcement-bar .unselected-message {
+    background-color: rgba(255, 77, 77, 0.1); /* Light transparent red */
+    border: 1px solid #ff4d4d; /* Red border */
+    color: #ff4d4d; /* Red text */
   }
 
-  .form-container button {
-    background: #00ffa2;
-    color: #000;
-    font-weight: bold;
+  .announcement-bar .icon {
+    font-size: 1.2rem; /* Larger icons */
+    margin-right: 10px;
+  }
+
+  .announcement-bar strong {
+    color: #00ffe7; /* Highlighted strong text */
+  }
+
+  .announcement-bar .close-btn {
+    position: absolute;
+    top: 15px; /* Adjust vertical position */
+    right: 20px; /* Adjust horizontal position */
+    background: none;
     border: none;
-    border-radius: 8px;
-    padding: 0.75rem;
+    color: #e0f2f1;
+    font-size: 1.8rem; /* Larger close button */
     cursor: pointer;
-    width: 100%;
-    transition: background 0.3s ease;
+    line-height: 1;
+    min-width: 30px; /* Sufficient touch target */
+    min-height: 30px; /* Sufficient touch target */
+    transition: color 0.2s ease;
   }
 
-  .form-container button:hover {
-    background: #00cc85;
-  }
-
-  .qr-section {
-    text-align: center;
-    margin: 2rem 0;
-  }
-
-  .qr-section img {
-    width: 180px;
-    margin-bottom: 1rem;
-  }
-
-  .status-message {
-    background: #222;
-    border-left: 4px solid #00ffa2;
-    padding: 1rem;
-    margin-top: 2rem;
-    border-radius: 8px;
-    color: #00ffa2;
+  .announcement-bar .close-btn:hover {
+    color: #ff4d4d; /* More striking red on hover */
   }
 
   /* ===== MOBILE FIXES ===== */
-/* Add this to your existing CSS */
-
     @media (max-width: 767px) {
       /* Hero Section Fixes */
       .hero {
         height: auto;
-        min-height: 100vh;
         padding: 100px 20px 80px;
       }
       
@@ -390,6 +407,33 @@
       .hero p br {
         display: none;
       }
+
+      /* Announcement Bar responsive adjustments */
+      .announcement-bar {
+        font-size: 0.85rem;
+        padding: 15px 15px;
+      }
+      .announcement-bar h3 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+      }
+      .announcement-bar .close-btn {
+        font-size: 1.4rem;
+        top: 10px;
+        right: 10px;
+      }
+      .announcement-bar p {
+        margin-bottom: 6px;
+      }
+
+      .announcement-bar .selected-message,
+      .announcement-bar .unselected-message {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+      }
+       .announcement-bar .icon {
+        font-size: 1rem; 
+      }
     }
 
     /* Special Fixes for Very Small Screens */
@@ -423,6 +467,37 @@
 </head>
 
 <body>
+  <!-- Announcement Bar -->
+  <div id="resultsAnnouncement" class="announcement-bar">
+    <button class="close-btn" onclick="hideAnnouncement();">&times;</button>
+    <h3>🎉 Hackathon Results Announced! 🎉</h3>
+    <p>Hello Innovators,</p>
+    <p>We are thrilled to announce that the results for our hackathon are now live! We've received 300+ incredible submissions per track, and after thorough evaluation, only 15 top teams per track have been selected. 🌟</p>
+    
+    <div class="message-section">
+      <div class="selected-message">
+        <span class="icon">✅</span> If your team has been selected – Congratulations! You’ve made it to the top! One of your team members will receive an email shortly. Please check your inbox (and spam folder, just in case) for your result update.
+      </div>
+    </div>
+
+    <div class="message-section">
+      <div class="unselected-message">
+        <span class="icon">❌</span> If your team wasn’t selected – Don’t worry. You’ve shown great passion, creativity, and problem-solving skills. Remember: every great innovator once faced rejection. Keep building, learning, and trying—your time will come. 💪
+      </div>
+    </div>
+    
+    <p>✨For all participants</p>
+    <p>This hackathon was not just about winning—it's about learning, growth, and community. You’ve already taken a huge step by submitting your ideas and building solutions under pressure. That itself is a victory. 🚀</p>
+    <p>Keep hustling, keep innovating. The future belongs to people like you.</p>
+    
+    <p>🔐 For selected teams:</p>
+    <p>Your new interface access link has been sent to your inbox.<br>
+    Username: <strong>Your Team Name</strong><br>
+    Password: <strong>Your Team Name</strong></p>
+    <p>(You can change both later if you'd like)</p>
+    <p>Thank you to everyone who participated. The energy, talent, and innovation you brought was truly inspiring. ❤️</p>
+  </div>
+
   <!-- Navigation -->
   <nav>
     <a href="#home">HOME</a>
@@ -431,7 +506,6 @@
     <a href="#prizes">PRIZES</a>
     <a href="#sponsors">SPONSORS</a>
     <a href="#faq">FAQ</a>
-    <a href="#register">REGISTER</a>
   </nav>
 
   <!-- Hero Section -->
@@ -441,8 +515,8 @@
       <h1 class="glitch" data-text="NIMITHACKS 2025">ZENITHACK 2025</h1>
       <h2>National-Level 48-Hour Hackathon</h2>
       <p>10th - 13th Aug, 2025</p>
-      <a href="#register" class="cta-btn" style="margin-top: 5rem;">Register Now</a>
-
+      <!-- The register button is still here, but it no longer scrolls to the registration section -->
+      <a href="#home" class="cta-btn" style="margin-top: 5rem;">Learn More</a> 
       
     </div>
   </section>
@@ -588,7 +662,6 @@
       </h2>
   
       <!-- Platinum Sponsors -->
-      <h3 style="font-size: 28px; margin-bottom: 20px; color: #FFD700;">🌟 Platinum Sponsors</h3>
       <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 40px; margin-bottom: 60px;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="Google" style="height: 80px; filter: drop-shadow(0 0 8px #FFD700);">
         
@@ -610,7 +683,7 @@
       <h3 style="font-size: 28px; margin-bottom: 20px; color: #00ffff;">💻 Tech & Community Partners</h3>
       <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px;">
         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Ficonscout.com%2Ffree-icon%2Fdevfolio-1649779&psig=AOvVaw0dL5c_jUKOVfaUFqBU46nG&ust=1744018500173000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIja6aqNw4wDFQAAAAAdAAAAABAJ" alt="Devfolio" style="height: 50px; filter: drop-shadow(0 0 5px #00ffff);"> -->
-<!--         <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" alt="Polygon" style="height: 50px; filter: drop-shadow(0 0 5px #00ffff);"> -->
+<!--          <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" alt="Polygon" style="height: 50px; filter: drop-shadow(0 0 5px #00ffff);"> -->
         <img src="https://replit.com/public/images/logo.svg" alt="Replit" style="height: 50px; filter: drop-shadow(0 0 5px #00ffff);">
         <!-- <img src="https://cdn.auth0.com/blog/logos/auth0-logo.svg" alt="Auth0" style="height: 50px; filter: drop-shadow(0 0 5px #00ffff);"> -->
       </div>
@@ -697,61 +770,7 @@
     }
   </script>
   
-        
-
-  <!-- Registration Section -->
-  <section id="register" class="register-section">
-    <div class="form-container">
-      <h2>Register for ZENITHACK 2025</h2>
-      <form id="registration-form">
-        <label for="fullname">Full Name</label>
-        <input type="text" id="fullname" name="fullname" required>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="college">College Name</label>
-        <input type="text" id="college" name="college" required>
-
-        <label for="teamname">Team Name</label>
-        <input type="text" id="teamname" name="teamname" required>
-
-        <label for="teamsize">Team Size</label>
-        <input type="number" id="teamsize" name="teamsize" min="1" max="4" required>
-
-        <label for="problem">Select Problem Statement</label>
-        <select id="problem" name="problem" required>
-          <option value="">-- Select --</option>
-          <option value="agritech">Agritech Solution</option>
-          <option value="disaster">Sustainability</option>
-          <option value="healthcare">Healthcare Innovation</option>
-          <option value="education">Blockchain</option>
-          <option value="open">Open Innovation</option>
-        </select>
-
-        <label for="solution">Proposed Solution</label>
-        <textarea id="solution" name="solution" rows="4" placeholder="Explain your team's approach..." required></textarea>
-
-        <div class="qr-section" style="margin-top: 40px; background-color: #121212; padding: 20px; border: 1px solid #00ffff; border-radius: 10px;">
-          <p style="color: #00ffff; font-size: 18px;"><strong>💰 Pay Entry Fee</strong></p>
-          <p style="color: #ffffff; margin-top: 10px;">Please use <strong>Google Pay</strong>, <strong>PhonePe</strong>, <strong>Paytm</strong>, or any UPI platform to make the payment.</p>
-        
-          <p style="color: #ffffff; margin-top: 10px;">Account Number: <strong>6197762981</strong></p>
-          <p style="color: #ffffff;">IFSC Code: <strong>IDIB000S042</strong></p>
-        
-          <p style="color: #ffffff; margin-top: 20px;">Upload Screenshot of Payment:</p>
-          <input type="file" accept="image/*" required style="margin-bottom: 20px; padding: 5px; border-radius: 5px;">
-        
-          <button type="submit" style="padding: 10px 20px; background-color: #00ffff; color: #000; font-weight: bold; border: none; border-radius: 8px; cursor: pointer;">Register</button>
-        </div>
-        
-
-        <div class="status-message" id="statusMessage">
-          ✅ Your registration is under review. After 1ts round, you can join or create your team!
-        </div>
-      </form>
-    </div>
-  </section>
+          
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -807,32 +826,52 @@
         : header.innerHTML.replace("▶️", "🔽");
     }
 
-    // Registration form handler
-    const form = document.getElementById('registration-form');
-    const statusMessage = document.getElementById('statusMessage');
-
-    if (form && statusMessage) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault(); // no backend yet
-        statusMessage.style.display = 'block';
-        form.scrollIntoView({ behavior: "smooth" });
-      });
+    // Function to hide announcement and adjust layout
+    function hideAnnouncement() {
+      const announcementBar = document.getElementById('resultsAnnouncement');
+      announcementBar.classList.add('hidden'); // Add hidden class for transition
+      localStorage.setItem('hideResultsAnnouncement', 'true'); // Still save preference for future sessions
+      // Wait for transition to complete before adjusting layout fully
+      announcementBar.addEventListener('transitionend', adjustLayout, { once: true });
     }
+
+    // Dynamic positioning for announcement and navigation
+    function adjustLayout() {
+      const announcementBar = document.getElementById('resultsAnnouncement');
+      const navBar = document.querySelector('nav');
+      const heroSection = document.getElementById('home');
+      let currentHeaderHeight = 0;
+
+      // Always show the announcement bar initially
+      announcementBar.style.display = 'block';
+      announcementBar.classList.remove('hidden'); 
+      currentHeaderHeight += announcementBar.offsetHeight;
+      
+
+      // Position navBar
+      if (navBar) {
+        navBar.style.top = currentHeaderHeight + 'px';
+        currentHeaderHeight += navBar.offsetHeight;
+      }
+
+      // Set CSS variable for total header height
+      document.documentElement.style.setProperty('--header-height', `${currentHeaderHeight}px`);
+
+      // Ensure hero section is pushed down correctly
+      if (heroSection) {
+        heroSection.style.marginTop = `var(--header-height)`;
+        heroSection.style.minHeight = `calc(100vh - var(--header-height))`;
+      }
+    }
+
+    // Run adjustLayout on load and resize
+    window.addEventListener('load', adjustLayout);
+    window.addEventListener('resize', adjustLayout);
+    
+    // Initial call to adjustLayout to ensure correct positioning on first load/refresh
+    document.addEventListener('DOMContentLoaded', adjustLayout);
   </script>
 
-    <script>
-    // Handle form submission
-    document.getElementById('registration-form').addEventListener('submit', function (e) {
-        e.preventDefault(); // prevent actual form submission
-        document.getElementById('statusMessage').style.display = 'block';
-        this.reset(); // reset the form
-    });
-
-    // Hide message on reload
-    window.onload = function () {
-        document.getElementById('statusMessage').style.display = 'none';
-    };
-    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QZ6MMLWEV"></script>
     <script>
