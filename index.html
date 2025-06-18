@@ -252,8 +252,9 @@
     width: 100%; /* Ensure full width */
     box-sizing: border-box; /* Include padding in width */
     transition: transform 0.3s ease; /* Smooth transition for hiding/showing */
-    transform: translateY(0); /* Default visible */
-  }
+    transform: scale(0.9) translateY(0); /* Shrink by 10% and stay visible */
+    transform-origin: top center; /* Keep it pinned to the top */
+}
 
   .announcement-bar.hidden {
     transform: translateY(-100%); /* Move off-screen when hidden */
@@ -486,7 +487,7 @@
       </div>
     </div>
     
-    <p>✨For all participants</p>
+    <p>✨ Motivation for all participants</p>
     <p>This hackathon was not just about winning—it's about learning, growth, and community. You’ve already taken a huge step by submitting your ideas and building solutions under pressure. That itself is a victory. 🚀</p>
     <p>Keep hustling, keep innovating. The future belongs to people like you.</p>
     
